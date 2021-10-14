@@ -3,6 +3,7 @@ package com.example.mongo.springmongo.controller;
 import com.example.mongo.springmongo.model.Book;
 import com.example.mongo.springmongo.model.Chapter;
 import com.example.mongo.springmongo.repository.BookRepository;
+import com.example.mongo.springmongo.repository.ChapterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,8 +23,14 @@ public class BookController {
     @Autowired
     public BookRepository repository;
 
+    @Autowired
+    public ChapterRepository chapterRepository;
+
     @PostMapping("/books")
     public String saveBook(@RequestBody Book book){
+        if(book.getChapter()!=null){
+            chapterRepository.save(book.getChapter());
+        }
         repository.save(book);
         return "Book" +book.getId() +" is now added";
     }
