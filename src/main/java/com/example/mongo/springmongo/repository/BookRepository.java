@@ -28,5 +28,7 @@ List<Book> findByChapter_Number(int number);
 
 @Query("{'bookName': {$regex : ?0}}")
 List<Book> findByBookNameRegex(String bookName);
+
+List<Book> findByChapterNumber(Integer number);
 }
 

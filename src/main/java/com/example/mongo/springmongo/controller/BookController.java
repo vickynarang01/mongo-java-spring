@@ -111,4 +111,9 @@ public class BookController {
         return repository.findByBookNameRegex(bookName);
     }
 
+    @GetMapping("/byChapterId")
+    public List<Book> getBookChapterId(@RequestParam int id){
+        return repository.findByChapterNumber(id);
+    }
+
 }
